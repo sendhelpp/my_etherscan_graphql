@@ -7,13 +7,20 @@ require("dotenv").config();
 
 const resolvers = {
   Query: {
-    getEthByAddress: (root, _args, { dataSources }) =>
+    etherBalanceByAddress: (root, _args, { dataSources }) =>
       dataSources.ethDataSource.etherBalanceByAddress(),
-    getTotalSupplyEth: (root, _args, { dataSources }) =>
+
+    totalSupplyOfEther: (root, _args, { dataSources }) =>
       dataSources.ethDataSource.totalSupplyOfEther(),
-    //Paste Code for New Resolver Functions
+
+    latestEthereumPrice: (root, _args, { dataSources }) =>
+      dataSources.ethDataSource.getLatestEthereumPrice(),
+
+    blockConfirmationTime: (root, _args, { dataSources }) =>
+      dataSources.ethDataSource.getBlockConfirmationTime(),
   },
 };
+
 
 const server = new ApolloServer({
   typeDefs,
